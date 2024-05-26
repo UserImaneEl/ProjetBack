@@ -1,4 +1,4 @@
-# Utiliser l'image Jelastic Maven avec OpenJDK 21
+# Utiliser l'image Jelastic Maven avec OpenJDK 21 pour la compilation
 FROM jelastic/maven:3.9.5-openjdk-21 AS build
 
 # Définir le répertoire de travail
@@ -10,14 +10,14 @@ COPY ./ /opt/app
 # Compiler l'application avec Maven
 RUN mvn clean install -DskipTests
 
-# Utiliser une image légère avec OpenJDK 21
-FROM alpine:3.14
+# Utiliser une image Alpine avec OpenJDK 11 pour l'exécution
+FROM adoptopenjdk/openjdk11:alpine-slim
 
 # Copier le fichier JAR depuis l'étape de build précédente
 COPY --from=build /opt/app/target/*.jar app.jar
 
 # Définir le port exposé par l'application
-ENV PORT 8080
+ENV PORT 8083
 EXPOSE $PORT
 
 # Commande d'exécution de l'application
