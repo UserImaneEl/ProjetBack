@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/UserImaneEl/ProjetSpring.git'
+                git 'https://github.com/UserImaneEl/ProjetBack.git'
             }
         }
         stage('Build Docker Image') {
