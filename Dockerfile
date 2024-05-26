@@ -7,7 +7,7 @@ COPY ./ /opt/app
 RUN mvn clean install -DskipTests
 
 # Docker Build Stage
-FROM openjdk:21-alpine  # Remplacer par votre alternative
+FROM openjdk:21-alpine
 
 COPY --from=build /opt/app/target/*.jar app.jar
 
