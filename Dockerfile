@@ -17,7 +17,7 @@ FROM openjdk:17-alpine
 COPY --from=build /opt/app/target/*.jar app.jar
 
 # Définir le port exposé par l'application
-ENV PORT 8083
+ENV PORT 3000
 EXPOSE $PORT
 
 # Commande d'exécution de l'application
