@@ -1,5 +1,5 @@
 # Utiliser l'image Jelastic Maven avec OpenJDK 17 pour la compilation
-FROM jelastic/maven:3.9.5-openjdk-17 AS build
+FROM jelastic/maven:3.6.3-openjdk-17 AS build
 
 # Définir le répertoire de travail
 WORKDIR /opt/app
