@@ -9,4 +9,5 @@ public interface CompteService {
    Patient ajoutPatient();
 
 
+    boolean existsByUsername(String username);
 }

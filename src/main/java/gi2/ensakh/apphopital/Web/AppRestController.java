@@ -2,6 +2,7 @@ package gi2.ensakh.apphopital.Web;
 
 import gi2.ensakh.apphopital.Dtos.*;
 import gi2.ensakh.apphopital.Entities.*;
+
 import gi2.ensakh.apphopital.Mappers.HopitalMappers;
 import gi2.ensakh.apphopital.Repositories.*;
 import gi2.ensakh.apphopital.Services.*;
@@ -48,6 +49,12 @@ public class AppRestController {
     private PersonneService personneService;
     @Autowired
     private PersonneRepository repPr;
+    @Autowired
+    private DepartementRepository departementRepository;
+
+     private MedecinInf medService;
+     @Autowired
+     private CompteService compteService;
 
     @GetMapping("/listeRDVID/{id}")
     @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
@@ -460,7 +467,49 @@ public class AppRestController {
        medecinDto med=dtoMapper.fromMedToDto(m);
        return ResponseEntity.ok(med);
    }
+    @GetMapping("/doctorByDept/{nomDept}")
+    public List<medecinDto> getDoctorByDept(@PathVariable("nomDept") String nomDept) {
+        List<Medecin> listeMedecin = medecinRepository.findMedecinByDepartement(nomDept);
+        List<medecinDto> listMedecinDtos = listeMedecin.stream()
+                .map(medecin -> dtoMapper.fromMedToDto(medecin))
+                .collect(Collectors.toList());
+        return listMedecinDtos;
     }
+
+    @GetMapping("/getAllDept")
+    public List<String> getAllDept() {
+            return departementRepository.findAllDept();
+
+    }
+    @GetMapping("/exists/{username}")
+    public ResponseEntity<Boolean> checkUsernameExists(@PathVariable String username) {
+
+        boolean exists = compteService.existsByUsername(username);
+        System.out.print(exists);
+        return ResponseEntity.ok(exists);
+    }
+    @GetMapping("/existsCin/{cin}")
+    public ResponseEntity<Boolean> checkUsernameExistsCin(@PathVariable String cin) {
+
+        boolean exists = personneService.existsByCin(cin);
+        System.out.print(exists);
+        return ResponseEntity.ok(exists);
+    }
+
+    @GetMapping("/dep")
+    public  ResponseEntity<List<Departement>> getDep(){
+        List<Departement> l=departementRepository.findAll();
+        System.out.print("dep");
+        return new ResponseEntity<>(l, HttpStatus.OK);
+    }
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    @PostMapping("/compteMed")
+    public void creerCompteMed(@RequestBody inscriptionDto inscription) {
+        // reclamationService.soumettreReclamation(reclamationDTO);
+        System.out.println("attttttttttttttt"+inscription.getDep());
+        medService.InsertMedecinCompteV(inscription);
+	}
+}
 
 
 

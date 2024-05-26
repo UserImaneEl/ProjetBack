@@ -23,5 +23,7 @@ public interface MedecinRepository extends JpaRepository<Medecin,Integer> {
     List<Medecin> findMedecinByKeyword(@Param("keyword") String keyword);
     @Query("SELECT m FROM Personne m  WHERE TYPE(m)= Medecin and m.compte.username= :username")
     Medecin findByUsername(@Param("username") String username);
+    @Query("select m from Medecin m where m.dep.nom_dep=:nomDept ")
+    List<Medecin> findMedecinByDepartement(@Param("nomDept") String nomDept);
 
 }

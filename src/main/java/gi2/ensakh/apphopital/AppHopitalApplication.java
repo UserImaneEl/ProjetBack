@@ -22,8 +22,8 @@ public class AppHopitalApplication {
 		SpringApplication.run(AppHopitalApplication.class, args);
 
 	}
-	@Autowired
-	PersonneService p;
+	//@Autowired
+	//PersonneService p;
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
@@ -92,7 +92,7 @@ public class AppHopitalApplication {
 			//Path path = Paths.get(cheminImage);
 			//byte[] imageData = Files.readAllBytes(path);
 
-           //p.ajouterImage("A6570",imageData);
+           //p.ajouterImage("A1415",imageData);
 			//p.ajouterImage("A6789",imageData);
 
 		};

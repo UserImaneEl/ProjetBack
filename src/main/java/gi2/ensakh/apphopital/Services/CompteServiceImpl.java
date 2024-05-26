@@ -3,6 +3,7 @@ package gi2.ensakh.apphopital.Services;
 import gi2.ensakh.apphopital.Entities.*;
 import gi2.ensakh.apphopital.Repositories.CompteRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @AllArgsConstructor
 public class CompteServiceImpl implements CompteService {
+    @Autowired
     private CompteRepository compteRepository;
     private PasswordEncoder passwordEncoder;
     @Override
@@ -38,6 +40,14 @@ public class CompteServiceImpl implements CompteService {
     @Override
     public Patient ajoutPatient() {
         return null;
+    }
+
+
+    @Override
+    public boolean existsByUsername(String username) {
+
+        return compteRepository.existsById(Integer.valueOf(username));
+
     }
 
 }
