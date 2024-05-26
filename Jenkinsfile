@@ -9,7 +9,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("imane02/projetspring:latest")
+                    dockerImage = docker.build("imane02/projetback:latest")
                 }
             }
         }
@@ -27,12 +27,12 @@ pipeline {
                 script {
                     try {
                         // Attempt to remove any existing container with the same name
-                        bat 'docker rm -f projetspring || true'
+                        bat 'docker rm -f projetback || true'
                     } catch (Exception e) {
                         echo 'No existing container to remove'
                     }
                     // Run the container with restart policy set to always
-                    bat 'docker run -d --name projetspring --restart always -p 8083:8083 imane02/projetspring:latest'
+                    bat 'docker run -d --name projetback --restart always -p 8083:8083 imane02/projetback:latest'
                 }
             }
         }
