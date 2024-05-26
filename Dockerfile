@@ -11,7 +11,7 @@ FROM adoptopenjdk/openjdk17:alpine-slim
 
 COPY --from=build /opt/app/target/*.jar app.jar
 
-ENV PORT 8085
+ENV PORT 8083
 EXPOSE $PORT
 
 ENTRYPOINT ["java","-jar","-Dserver.port=${PORT}","app.jar"]
