@@ -20,7 +20,7 @@ public interface RendezVousRepository extends JpaRepository<RendezVous,Integer> 
     @Query("select R.medecin.cin from RendezVous R where R.id=:id")
     String findCinDrByIdRDV(@Param("id")Long id);
 
-    @Query("SELECT r.medecin.dep.secretaire FROM RendezVous r WHERE r.id = :idRdv and r.dep='Cardiologie'")
+    @Query("SELECT r.medecin.dep.secretaire FROM RendezVous r WHERE r.id = :idRdv ")
     Secretaire findSecretaireByRdvId(@Param("idRdv") Long idRdv);
 
 

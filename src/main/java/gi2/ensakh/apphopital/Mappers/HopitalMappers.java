@@ -7,17 +7,25 @@ import gi2.ensakh.apphopital.Repositories.DepartementRepository;
 import gi2.ensakh.apphopital.Repositories.MedecinRepository;
 import gi2.ensakh.apphopital.Repositories.PatientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @AllArgsConstructor
 @Service
+@Component
 public class HopitalMappers {
+    @Autowired
     PatientRepository patientRepository;
+    @Autowired
     MedecinRepository medecinRepository;
+    @Autowired
     CompteRepository compteRepository;
+    @Autowired
     DepartementRepository dr;
+    @Autowired
     PasswordEncoder passwordEncoder;
 
     public PatientRdvDto fromPatientRdv(RendezVous Rendezvous) {

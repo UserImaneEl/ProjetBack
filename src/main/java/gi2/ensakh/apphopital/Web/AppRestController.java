@@ -504,11 +504,16 @@ public class AppRestController {
     }
     @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
     @PostMapping("/compteMed")
-    public void creerCompteMed(@RequestBody inscriptionDto inscription) {
-        // reclamationService.soumettreReclamation(reclamationDTO);
-        System.out.println("attttttttttttttt"+inscription.getDep());
-        medService.InsertMedecinCompteV(inscription);
-	}
+    public ResponseEntity<String> creerCompteMed(@RequestBody inscriptionDto inscription) {
+        try {
+            System.out.println("attttttttttttttt" + inscription.getDep());
+            medService.InsertMedecinCompteV(inscription);
+            return ResponseEntity.ok("La demande a été envoyée avec succès !");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Une erreur s'est produite lors de l'envoi de la demande : " + e.getMessage());
+        }
+    }
 }
 
 

@@ -18,6 +18,7 @@ public class MedecinImpl implements MedecinInf{
     MedecinRepository md ;
     @Autowired
     public CompteRepository CR;
+    @Autowired
     public HopitalMappers hopitalMappers;
 
     @Override

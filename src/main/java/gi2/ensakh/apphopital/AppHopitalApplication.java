@@ -1,8 +1,10 @@
 package gi2.ensakh.apphopital;
 
+import gi2.ensakh.apphopital.Dtos.inscriptionDto;
 import gi2.ensakh.apphopital.Entities.*;
 import gi2.ensakh.apphopital.Repositories.*;
 import gi2.ensakh.apphopital.Services.CompteServiceImpl;
+import gi2.ensakh.apphopital.Services.MedecinInf;
 import gi2.ensakh.apphopital.Services.PersonneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +26,7 @@ public class AppHopitalApplication {
 	}
 	//@Autowired
 	//PersonneService p;
+	//MedecinInf m;
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
@@ -94,6 +97,9 @@ public class AppHopitalApplication {
 
            //p.ajouterImage("A1415",imageData);
 			//p.ajouterImage("A6789",imageData);
+			//inscriptionDto dto = new inscriptionDto();
+
+			// Remplir l'instance avec des données
 
 		};
 	}
