@@ -20,5 +20,8 @@ COPY --from=build /opt/app/target/*.jar app.jar
 ENV PORT 3000
 EXPOSE $PORT
 
+ENV MYSQL_PORT 3306
+EXPOSE $MYSQL_PORT
+
 # Commande d'exécution de l'application
 ENTRYPOINT ["java", "-jar", "-Dserver.port=${PORT}", "app.jar"]
